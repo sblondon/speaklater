@@ -194,6 +194,13 @@ class _LazyString(object):
         except Exception:
             return '<%s broken>' % self.__class__.__name__
 
+    def format(self, **params):
+        try:
+            translated = unicode(self)
+        except NameError:
+            translated = str(self)
+        return translated.format(**params)
+
 
 if __name__ == '__main__':
     import doctest
